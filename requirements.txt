@@ -1,0 +1,6 @@
+geopy
+ipython
+jupyter
+numpy
+pandas
+xlrd
