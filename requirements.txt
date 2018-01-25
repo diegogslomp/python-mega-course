@@ -5,3 +5,4 @@ numpy
 pandas
 xlrd
 opencv-python
+folium
