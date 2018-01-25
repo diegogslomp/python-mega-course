@@ -4,3 +4,4 @@ jupyter
 numpy
 pandas
 xlrd
+opencv-python
