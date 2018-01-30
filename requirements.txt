@@ -6,3 +6,4 @@ pandas
 xlrd
 opencv-python
 folium
+flask
