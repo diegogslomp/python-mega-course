@@ -7,3 +7,4 @@ xlrd
 opencv-python
 folium
 flask
+psycopg2
