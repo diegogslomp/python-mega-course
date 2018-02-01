@@ -1,2 +1,5 @@
 env/
 .ipynb_checkpoints/
+__pycache__/
+*.spec
+build/
