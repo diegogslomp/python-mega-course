@@ -18,6 +18,7 @@ class Account:
             file.write(str(self.balance))
 
 class Checking(Account):
+    """Generate checking accont objects"""
     def __init__(self, filepath, fee):
         self.fee = fee
         Account.__init__(self, filepath)
@@ -32,7 +33,12 @@ class Checking(Account):
 #acc1.deposit(1030)
 #print(acc1.balance)
 #acc1.commit()
-ck1 = Checking('account/balance.txt', 2)
-print(ck1.balance)
-ck1.transfer(100)
-print(ck1.balance)
+jack = Checking('account/john.txt', 2)
+print(jack.balance)
+jack.transfer(100)
+print(jack.balance)
+
+john = Checking('account/jack.txt', 2)
+print(john.balance)
+john.transfer(100)
+print(john.balance)
