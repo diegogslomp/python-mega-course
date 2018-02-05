@@ -21,7 +21,7 @@ while True:
         continue
 
     delta_frame = cv2.absdiff(first_frame, gray)
-    thresh_delta = csv2.threshold(delta_frame, 30, 255, cv2.THRESH_BINARY)[1]
+    thresh_delta = cv2.threshold(delta_frame, 30, 255, cv2.THRESH_BINARY)[1]
     thresh_delta = cv2.dilate(thresh_delta, None, iterations=2)
 
     (_,cnts,_)=cv2.findContours(thresh_delta.copy(),cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -37,9 +37,9 @@ while True:
     status_list.append(status)
 
     if status_list[-1]==1 and status_list[-2]==0:
-        time.append(datetime.now())
+        times.append(datetime.now())
     if status_list[-1]==0 and status_list[-2]==1:
-        time.append(datetime.now())
+        times.append(datetime.now())
 
     cv2.imshow("Gray Frame",gray)
     cv2.imshow("Delta Frame",delta_frame)
