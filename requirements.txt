@@ -9,3 +9,5 @@ folium
 flask
 psycopg2
 pyinstaller
+bkcharts==0.2
+bokeh
