@@ -10,4 +10,5 @@ flask
 psycopg2
 pyinstaller
 bkcharts==0.2
-bokeh
+bokeh==0.12.6
+
