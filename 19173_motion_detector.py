@@ -41,6 +41,8 @@ while True:
     if status_list[-1]==0 and status_list[-2]==1:
         times.append(datetime.now())
 
+    status_list[-2:]
+
     cv2.imshow("Gray Frame",gray)
     cv2.imshow("Delta Frame",delta_frame)
     cv2.imshow("Threshold Frame",thresh_delta)
