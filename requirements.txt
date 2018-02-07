@@ -14,3 +14,7 @@ bokeh==0.12.6
 requests
 bs4
 pandas_datareader
+flask
+gunicorn
+psycopg2
+flask_sqlalchemy
