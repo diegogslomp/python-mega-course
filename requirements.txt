@@ -13,3 +13,4 @@ bkcharts==0.2
 bokeh==0.12.6
 requests
 bs4
+pandas_datareader
