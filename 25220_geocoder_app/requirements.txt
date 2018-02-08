@@ -1,0 +1,5 @@
+flask
+gunicorn
+psycopg2
+sqlalchemy
+flask_sqlalchemy
