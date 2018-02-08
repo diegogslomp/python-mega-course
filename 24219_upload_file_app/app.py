@@ -1,0 +1,45 @@
+from flask import Flask, render_template, request, send_file
+from flask_sqlalchemy import SQLAlchemy
+from send_mail import send_mail
+from sqlalchemy.sql import func
+from werkzeug import secure_filename
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI']='postgresql:///height_collector'
+#app.config['SQLALCHEMY_DATABASE_URI']='postgres://uatxhawyshdxya:9379c71afbe21b6f943e95511262fbbe372bf2c155e2ad22b8a8468b40dd1e24@ec2-107-22-241-243.compute-1.amazonaws.com:5432/dbbe6hbfsua6ne?sslmode=require'
+db = SQLAlchemy(app)
+
+class Data(db.Model):
+    __tablename__ = "data"
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), unique=True)
+    height = db.Column(db.Integer)
+
+    def __init__(self, email, height):
+        self.email = email
+        self.height = height
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/download')
+def download():
+    return send_file('uploaded_'+uploaded_file.filename, attachment_filename="yourfile.txt", as_attachment=True)
+
+@app.route('/success', methods=['POST'])
+def success():
+    global uploaded_file
+    if request.method == 'POST':
+        uploaded_file=request.files['file']
+        uploaded_file.save(secure_filename('uploaded_'+uploaded_file.filename))
+        with open('uploaded_'+uploaded_file.filename, 'a') as f:
+            f.write("This was added later!")
+        print(uploaded_file)
+        print(type(uploaded_file))
+        return render_template('index.html', btn='download.html')
+
+if __name__ == '__main__':
+    app.debug=True
+    app.run(host = '0.0.0.0')
+    app.run()

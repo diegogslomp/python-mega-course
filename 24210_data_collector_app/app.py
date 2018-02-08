@@ -4,7 +4,8 @@ from send_mail import send_mail
 from sqlalchemy.sql import func
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI']='postgresql:///height_collector'
+#app.config['SQLALCHEMY_DATABASE_URI']='postgresql:///height_collector'
+app.config['SQLALCHEMY_DATABASE_URI']='postgres://uatxhawyshdxya:9379c71afbe21b6f943e95511262fbbe372bf2c155e2ad22b8a8468b40dd1e24@ec2-107-22-241-243.compute-1.amazonaws.com:5432/dbbe6hbfsua6ne?sslmode=require'
 db = SQLAlchemy(app)
 
 class Data(db.Model):
@@ -32,7 +33,7 @@ def success():
             db.session.commit()
             average_height = round(db.session.query(func.avg(Data.height)).scalar())
             count = db.session.query(Data.height).count()
-            send_mail(email, height, average_height, count)
+#            send_mail(email, height, average_height, count)
             return render_template('success.html')
         return render_template('index.html', message="Email already in database!")
 
