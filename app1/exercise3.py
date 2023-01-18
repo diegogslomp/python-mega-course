@@ -1,1 +1,0 @@
-cars = ['opala', 'fusca', 'gol']
