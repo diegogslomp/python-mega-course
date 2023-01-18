@@ -1,4 +1,4 @@
-env/
+venv/
 .ipynb_checkpoints/
 __pycache__/
 *.spec
