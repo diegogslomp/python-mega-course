@@ -1,9 +1,6 @@
 import os
-import pathlib
 
-file_path = os.path.join(
-    pathlib.Path(os.path.dirname(__name__)).parent.absolute(), "files", "members.txt"
-)
+file_path = os.path.join("files", "members.txt")
 
 new_member = input("Enter the new member: ")
 

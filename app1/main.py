@@ -1,6 +1,6 @@
 import os
 
-file_path = os.path.join(os.path.dirname(__file__), "files", "todos.txt")
+file_path = os.path.join(os.path.curdir, "files", "todos.txt")
 
 
 def read_from_file() -> list:
