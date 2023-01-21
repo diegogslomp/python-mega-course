@@ -18,13 +18,17 @@ def save_to_file(todos: list) -> None:
 
 while True:
 
-    user_action = input("Type add, show, edit, complete or exit: ")
-    user_action = user_action.strip()
+    user_input = input("Type add, show, edit, complete or exit: ")
+    user_input = user_input.strip()
+    user_input = user_input.split()
+    user_action = user_input[0]
 
     match user_action:
-
         case "add":
-            todo = input("Enter new todo: ")
+            if len(user_input) > 1:
+                todo = " ".join(user_input[1:])
+            else:
+                todo = input("Enter new todo: ")
             todos = read_from_file()
             todos.append(todo)
             save_to_file(todos)
@@ -35,14 +39,23 @@ while True:
                 print(f"{index + 1}. {item}".strip())
 
         case "edit":
-            number = int(input("Number of the todo to edit: "))
+            if len(user_input) > 1:
+                number = int(user_input[1])
+            else:
+                number = int(input("Number of the todo to edit: "))
+            if len(user_input) > 2:
+                new_todo = " ".join(user_input[2:])
+            else:
+                new_todo = input("Enter new todo: ")
             todos = read_from_file()
-            new_todo = input("Enter new todo: ")
             todos[number - 1] = new_todo
             save_to_file(todos)
 
         case "complete":
-            number = int(input("Number of the todo to complete: "))
+            if len(user_input) > 1:
+                number = int(user_input[1])
+            else:
+                number = int(input("Number of the todo to complete: "))
             todos = read_from_file()
             todos.pop(number - 1)
             save_to_file(todos)
