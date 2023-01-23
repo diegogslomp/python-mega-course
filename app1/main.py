@@ -10,7 +10,7 @@ def get_todos() -> list:
     return todos
 
 
-def save_todos(todos: list) -> None:
+def write_todos(todos: list) -> None:
     with open(file_path, "w") as file:
         lines = [f"{todo}\n" for todo in todos]
         file.writelines(lines)
@@ -34,7 +34,7 @@ while True:
                     continue
             todos = get_todos()
             todos.append(todo)
-            save_todos(todos)
+            write_todos(todos)
 
         case "show":
             todos = get_todos()
@@ -53,7 +53,7 @@ while True:
                     new_todo = input("Enter new todo: ")
                 todos = get_todos()
                 todos[number - 1] = new_todo
-                save_todos(todos)
+                write_todos(todos)
             except (ValueError, IndexError):
                 print("Invalid todo")
 
@@ -65,7 +65,7 @@ while True:
                     number = int(input("Number of the todo to complete: "))
                 todos = get_todos()
                 todos.pop(number - 1)
-                save_todos(todos)
+                write_todos(todos)
             except (ValueError, IndexError):
                 print("Invalid todo")
 
