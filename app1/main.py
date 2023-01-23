@@ -29,6 +29,9 @@ while True:
                 todo = " ".join(user_input[1:])
             else:
                 todo = input("Enter new todo: ")
+                if len(todo) == 0:
+                    print("Empty todo not added")
+                    continue
             todos = read_from_file()
             todos.append(todo)
             save_to_file(todos)
@@ -36,29 +39,35 @@ while True:
         case "show":
             todos = read_from_file()
             for index, item in enumerate(todos):
-                print(f"{index + 1}. {item}".strip())
+                print(f"{index + 1}. {item}")
 
         case "edit":
-            if len(user_input) > 1:
-                number = int(user_input[1])
-            else:
-                number = int(input("Number of the todo to edit: "))
-            if len(user_input) > 2:
-                new_todo = " ".join(user_input[2:])
-            else:
-                new_todo = input("Enter new todo: ")
-            todos = read_from_file()
-            todos[number - 1] = new_todo
-            save_to_file(todos)
+            try:
+                if len(user_input) > 1:
+                    number = int(user_input[1])
+                else:
+                    number = int(input("Number of the todo to edit: "))
+                if len(user_input) > 2:
+                    new_todo = " ".join(user_input[2:])
+                else:
+                    new_todo = input("Enter new todo: ")
+                todos = read_from_file()
+                todos[number - 1] = new_todo
+                save_to_file(todos)
+            except (ValueError, IndexError):
+                print("Invalid todo")
 
-        case "complete":
-            if len(user_input) > 1:
-                number = int(user_input[1])
-            else:
-                number = int(input("Number of the todo to complete: "))
-            todos = read_from_file()
-            todos.pop(number - 1)
-            save_to_file(todos)
+        case "complete" | "delete":
+            try:
+                if len(user_input) > 1:
+                    number = int(user_input[1])
+                else:
+                    number = int(input("Number of the todo to complete: "))
+                todos = read_from_file()
+                todos.pop(number - 1)
+                save_to_file(todos)
+            except (ValueError, IndexError):
+                print("Invalid todo")
 
         case "exit":
             break
