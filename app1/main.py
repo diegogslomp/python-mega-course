@@ -24,7 +24,7 @@ while True:
     user_action = user_input[0]
 
     match user_action:
-        case "add":
+        case "add" | "new":
             if len(user_input) > 1:
                 todo = " ".join(user_input[1:])
             else:
@@ -62,3 +62,6 @@ while True:
 
         case "exit":
             break
+
+        case other:
+            print("Invalid command")
