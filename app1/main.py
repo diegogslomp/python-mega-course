@@ -1,22 +1,4 @@
-import os
-
-file_path = os.path.join(os.path.curdir, "files", "todos.txt")
-
-
-def get_todos(file_path=file_path) -> list:
-    """Return list of todos from file"""
-    with open(file_path, "r") as file:
-        lines = file.readlines()
-        todos = [line.strip() for line in lines]
-    return todos
-
-
-def write_todos(todos: list, file_path=file_path) -> None:
-    """Write todos list to file"""
-    with open(file_path, "w") as file:
-        lines = [f"{todo}\n" for todo in todos]
-        file.writelines(lines)
-
+import modules.functions as functions
 
 while True:
 
@@ -34,12 +16,12 @@ while True:
                 if len(todo) == 0:
                     print("Empty todo not added")
                     continue
-            todos = get_todos()
+            todos = functions.get_todos()
             todos.append(todo)
-            write_todos(todos)
+            functions.write_todos(todos)
 
         case "show":
-            todos = get_todos()
+            todos = functions.get_todos()
             for index, item in enumerate(todos):
                 print(f"{index + 1}. {item}")
 
@@ -53,9 +35,9 @@ while True:
                     new_todo = " ".join(user_input[2:])
                 else:
                     new_todo = input("Enter new todo: ")
-                todos = get_todos()
+                todos = functions.get_todos()
                 todos[number - 1] = new_todo
-                write_todos(todos)
+                functions.write_todos(todos)
             except (ValueError, IndexError):
                 print("Invalid todo")
 
@@ -65,9 +47,9 @@ while True:
                     number = int(user_input[1])
                 else:
                     number = int(input("Number of the todo to complete: "))
-                todos = get_todos()
+                todos = functions.get_todos()
                 todos.pop(number - 1)
-                write_todos(todos)
+                functions.write_todos(todos)
             except (ValueError, IndexError):
                 print("Invalid todo")
 
