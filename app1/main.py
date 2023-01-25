@@ -1,4 +1,9 @@
 import modules.functions as functions
+import time
+
+now = time.strftime("%h %d, %Y %H:%M:%S")
+
+print("It is", now)
 
 while True:
 
